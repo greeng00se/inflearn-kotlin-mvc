@@ -1,6 +1,6 @@
 package com.example.mvc.controller.get
 
-import com.example.mvc.controller.model.http.UserRequest
+import com.example.mvc.model.http.UserRequest
 import org.springframework.web.bind.annotation.*
 
 @RestController

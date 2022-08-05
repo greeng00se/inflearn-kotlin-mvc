@@ -1,6 +1,6 @@
 package com.example.mvc.controller.post
 
-import com.example.mvc.controller.model.http.UserRequest
+import com.example.mvc.model.http.UserRequest
 import org.springframework.http.RequestEntity.post
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
