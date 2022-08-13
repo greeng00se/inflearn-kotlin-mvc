@@ -1,5 +1,6 @@
 package com.example.todo.controller.api.todo.model.http
 
+import com.example.todo.database.Todo
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.validation.constraints.AssertTrue
@@ -15,8 +16,8 @@ data class TodoDto(
     @field:NotBlank
     // yyyy-MM-dd HH:mm:ss
     var schedule: String? = null,
-    var createAt: LocalDateTime? = null,
-    var updateAt: LocalDateTime? = null
+    var createdAt: LocalDateTime? = null,
+    var updatedAt: LocalDateTime? = null
 ) {
     @AssertTrue(message = "yyyy-MM-dd HH:mm:ss 포맷이 맞지 않습니다.")
     fun validSchedule(): Boolean {
@@ -26,5 +27,17 @@ data class TodoDto(
         } catch (e: Exception) {
             false
         }
+    }
+}
+
+
+fun TodoDto.convertTodoDto(todo: Todo): TodoDto {
+    return TodoDto().apply {
+        this.index = todo.index
+        this.title = todo.title
+        this.description = todo.description
+        this.schedule = todo.schedule?.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+        this.createdAt = todo.createdAt
+        this.updatedAt = todo.updatedAt
     }
 }
