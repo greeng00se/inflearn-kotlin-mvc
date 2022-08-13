@@ -2,6 +2,8 @@ package com.example.todo.controller.api.todo
 
 import com.example.todo.controller.api.todo.model.http.TodoDto
 import com.example.todo.service.TodoService
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -16,13 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
 
-@Suppress("USELESS_ELVIS")
+@Api(description = "일정관리")
 @RestController
 @RequestMapping("/api/todo")
 class TodoApiController(
     val todoService: TodoService
 ) {
 
+    @ApiOperation("일정확인")
     @GetMapping
     fun read(@RequestParam(required = false) index: Int?): ResponseEntity<Any?> {
         return index?.let {
